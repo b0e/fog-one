@@ -3,7 +3,7 @@ require 'rake/testtask'
 require 'rubygems'
 require 'rubygems/package_task'
 require 'yard'
-require File.dirname(__FILE__) + '/lib/fog/opennebula'
+require File.dirname(__FILE__) + '/lib/fog/one'
 
 #############################################################################
 #
@@ -16,7 +16,7 @@ def name
 end
 
 def version
-  Fog::OpenNebula::VERSION
+  Fog::One::VERSION
 end
 
 def gemspec_file
@@ -54,7 +54,7 @@ end
 
 desc "Open an irb session preloaded with this library"
 task :console do
-  sh "irb -rubygems -r ./lib/fog/opennebula.rb"
+  sh "irb -rubygems -r ./lib/fog/one.rb"
 end
 
 #############################################################################
