@@ -2,7 +2,7 @@
 
 [OpenNebula](http://www.opennebula.org) provides ruby bindings to access the xml-rpc
 
-The opennebula fog extensions provides examples for using Fog with OpenNebula (4.4).
+The opennebula fog extensions provides examples for using Fog with OpenNebula (4.12.x).
 
 **Note:** This provider is under construction! This means everything that is provided should work without problems, but there are many features not available yet. Please contribute!
 
@@ -10,17 +10,18 @@ The opennebula fog extensions provides examples for using Fog with OpenNebula (4
 
 For working with this provider the following pre-requisites are needed:
 
-* Ruby version 1.8.x or 1.9.x
+* Ruby version 2.0.x and higher
 * `fog-core` gem
 * Working OpenNebula instance with XML-RPC and credentials
-* This version is tested with OpenNebula 4.4 and the opennebula gem dependency is hardcoded to this version. it should work with version 4.6, but is not tested.
+* This version is tested with OpenNebula (4.12.x) and the opennebula gem dependency is hardcoded to this version. 
+  it should work with version (> 4.12.x) too, but this is not very well tested yet.
 
 
 ## Examples
 
 General proceeding:
 
-* Connect to one-rpc
+* Connect to one xml-rpc
 * create new vm object
 * fetch a template/flavor from one (this template should be predefined)
 * assigne the flavor/template to the vm
@@ -31,14 +32,12 @@ General proceeding:
 require 'fog'
 
 # connect to your one rpc
-con = Fog::Compute.new(
-    {
-      :provider => 'OpenNebula',
-      :opennebula_username => 'user',
-      :opennebula_password => 'password',
-      :opennebula_endpoint => 'http://oned.domain:2633/RPC2'
-    }
-  )
+con = Fog::Compute.new({
+	:provider				=> 'One',
+	:opennebula_username	=> 'oneadmin',
+	:opennebula_password	=> 'opennebula',
+	:opennebula_endpoint	=> 'http://oned.domain:2633/RPC2'
+})
 
 
 # list all vms
@@ -84,20 +83,16 @@ newvm.flavor.nic = [ nic ]
 newvm.save
 ```
 
-## Features
-
-tbd
-
 ## not working yet
 
 * con.groups.get 4
 
-_AND_ everything not mentioned in features or examples ;)
+_AND_ everything not mentioned in examples ;)
 
 
 ## Troubleshooting
 
-* ArgumentError: opennebula is not a recognized compute provider
+* ArgumentError: `one' is not a recognized compute provider
   * is the correct gem version included?
 
 ## Additional Resources

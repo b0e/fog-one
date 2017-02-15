@@ -28,7 +28,7 @@ module Fog
             networks << network_to_attributes(network.to_hash)
           end
           networks
-        end
+        end # def list_networks
 
         def network_to_attributes(net)
           return if net.nil?
@@ -44,16 +44,15 @@ module Fog
           h[:vlan] 	      = net["VNET"]["VLAN_ID"] unless (net["VNET"]["VLAN_ID"].nil? || net["VNET"]["VLAN_ID"].empty?)
 
           return h
-        end
-
-      end
+        end # def network_to_attributes
+      end # class Real
 
       class Mock
         def list_networks(filters={})
           net1 = mock_network 'fogtest'
           net2 = mock_network 'net2'
           [net1, net2]
-        end
+        end # def list_networks
 
         def mock_network name
           {
@@ -65,8 +64,8 @@ module Fog
             :description => "netDescription",
             :vlan	       => "5"
           }
-        end
-      end
-    end
-  end
-end
+        end # def mock_networks
+      end # class Mock
+    end # class One
+  end # module Compute
+end # module Fog

@@ -22,7 +22,7 @@ module Fog
               :proxy_host => "example.com"
           }
         end # def get_vnc_console
-      end # class Real
+      end # class Mock
 
       class Real 
         def get_vnc_console(server_id, console_type, onevm_object)
@@ -40,7 +40,7 @@ module Fog
         def startvnc(onevm_object, vnc)
             return vnc.proxy(onevm_object)
         end #def startvnc
-      end # class Mock
+      end # class Real
     end # class One
   end # module Compute
 end # module Fog

@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.name              = "fog-one"
   s.version           = Fog::One::VERSION
 
-  s.summary     = "Module for the 'fog' gem to support OpenNebula"
+  s.summary     = "Module for Fog to support OpenNebula as additional Provider among others"
   s.description = "This library can be used as a module for 'fog' or as standalone OpenNebula provider."
 
   s.authors  = ["Netways Managed Services GmbH"]
@@ -23,20 +23,17 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.extra_rdoc_files = %w[README.md]
 
+  s.add_dependency("xmlrpc") if RUBY_VERSION > "2.4.0"
   s.add_dependency("fog-core")
-  s.add_dependency("opennebula", "~> 4.12.0")
   s.add_dependency("fog-json")
   s.add_dependency("fog-xml")
-  s.add_dependency("xmlrpc") if RUBY_VERSION > "2.4.0"
+  s.add_dependency("opennebula", "~> 4.12.0")
 
   s.add_development_dependency("minitest")
   s.add_development_dependency("minitest-stub-const")
-  #s.add_development_dependency("pry")
   s.add_development_dependency("rake")
-  #s.add_development_dependency("rubocop") if RUBY_VERSION > "2.0"
   s.add_development_dependency("shindo", "~> 0.3.4")
   s.add_development_dependency("simplecov")
-  s.add_development_dependency("yard")
   s.add_development_dependency("mocha", "~> 1.1.0")
 
   # Let's not ship dot files and gemfiles

@@ -63,7 +63,8 @@ module Fog
           else 
             []
           end
-        end
+        end # def list_vms
+
         def mock_vm(name, id=4)
           data = {}
           data["onevm_object"] = ""
@@ -80,8 +81,8 @@ module Fog
           data["mac"]	 = "00:01:02:03:04:05"
           data["ip"]	 = "1.1.1.1"
           data
-        end
-      end
-    end
-  end
-end
+        end # def mock_vm
+      end # class Mock
+    end # class One
+  end # module Compute
+end # module Fog

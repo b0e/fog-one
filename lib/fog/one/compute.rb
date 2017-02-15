@@ -34,12 +34,14 @@ module Fog
 
     class Mock
       include Collections
-      def initialize(options={})
-        require 'opennebula'
-      end
-
+      
       def client
         return @client
+      end
+
+      def initialize(options={})
+        require 'opennebula'
+		# do nothing
       end
     end
 

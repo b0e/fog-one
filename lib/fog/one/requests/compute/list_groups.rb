@@ -35,8 +35,8 @@ module Fog
             groups << {:id => group["ID"], :name => group["NAME"]}
           end
           groups
-        end
-      end
+        end # def list_groups
+      end # class Real
 
 
       class Mock
@@ -61,7 +61,7 @@ module Fog
             groups << {:id => group["ID"], :name => group["NAME"]}
           end
           groups
-        end
+        end # def list_groups
 
         def mock_group id, name
           {
@@ -72,8 +72,8 @@ module Fog
             "DESCRIPTION" => "netDescription",
             "VLAN"	 => "5"
           }
-        end
-      end
-    end
-  end
-end
+        end # def mock_group
+      end # class Mock
+    end # class One
+  end # module Compute
+end # module Fog

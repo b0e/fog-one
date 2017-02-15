@@ -3,22 +3,22 @@ module One # deviates from other bin stuff to accomodate gem
 
     def class_for(key)
       case key
-      when :compute
-        Fog::Compute::One
-      else
-        raise ArgumentError, "Unrecognized service: #{key}"
+      	when :compute
+        	Fog::Compute::One
+      	else
+        	raise ArgumentError, "Unrecognized service: #{key}"
       end
     end
 
     def [](service)
       @@connections ||= Hash.new do |hash, key|
         hash[key] = case key
-        when :compute
-          Fog::Logger.warning("One[:compute] is not recommended, use Compute[:one] for portability")
-          Fog::Compute.new(:provider => 'One')
-        else
-          raise ArgumentError, "Unrecognized service: #{key.inspect}"
-        end
+        	when :compute
+          		Fog::Logger.warning("One[:compute] is not recommended, use Compute[:one] for portability")
+          		Fog::Compute.new(:provider => 'One')
+        	else
+          		raise ArgumentError, "Unrecognized service: #{key.inspect}"
+        end # case
       end
       @@connections[service]
     end

@@ -2,7 +2,7 @@ require 'bundler/setup'
 require 'rake/testtask'
 require 'rubygems'
 require 'rubygems/package_task'
-require 'yard'
+#require 'yard'
 require File.dirname(__FILE__) + '/lib/fog/one'
 
 #############################################################################
@@ -36,20 +36,27 @@ end
 GEM_NAME = "#{name}"
 task :default => [:test]
 
+testcommand = "shindont"
+ENV.each do |key,val|
+    if key =~ /VERBOSE|DEBUG/
+        testcommand = (val =~ /1|true/ ) ? "shindo" : "shindont"
+    end
+end
+
 desc 'Run tests'
 task :test do
   mock = ENV['FOG_MOCK'] || 'true'
-  sh("export FOG_MOCK=#{mock} && bundle exec shindont tests")
+  sh("export FOG_MOCK=#{mock} && bundle exec #{testcommand} tests")
 end
 
 desc 'Run mocked tests'
 task :mock do
-  sh("export FOG_MOCK=true && bundle exec shindont tests")
+  sh("export FOG_MOCK=true && bundle exec #{testcommand} tests")
 end
 
 desc 'Run live tests'
 task :live do
-  sh("export FOG_MOCK=false && bundle exec shindont tests")
+  sh("export FOG_MOCK=false && bundle exec #{testcommand} tests")
 end
 
 desc "Open an irb session preloaded with this library"
@@ -111,9 +118,9 @@ task :build do
 end
 task :gem => :build
 
-# Include Yard tasks for rake yard
-YARDOC_LOCATION = "doc"
-YARD::Rake::YardocTask.new do |t|
-  t.files   = ['lib/**/*.rb', "README"]
-  t.options = ["--output-dir", YARDOC_LOCATION, "--title", "#{name} #{version}"]
-end
+## Include Yard tasks for rake yard
+#YARDOC_LOCATION = "doc"
+#YARD::Rake::YardocTask.new do |t|
+#  t.files   = ['lib/**/*.rb', "README"]
+#  t.options = ["--output-dir", YARDOC_LOCATION, "--title", "#{name} #{version}"]
+#end
