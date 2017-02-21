@@ -1,5 +1,3 @@
-require 'fog/compute/models/server'
-
 module Fog
   module Compute
     class One
@@ -29,6 +27,10 @@ module Fog
         def vm_ip_address
           ip
         end
+
+        #def template_id
+        #  ""
+        #end
 
         def private_ip_address
           ip

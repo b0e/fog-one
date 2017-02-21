@@ -25,9 +25,9 @@ Gem::Specification.new do |s|
 
   s.add_dependency("xmlrpc") if RUBY_VERSION > "2.4.0"
   s.add_dependency("fog-core")
+  s.add_dependency("opennebula")
   s.add_dependency("fog-json")
   s.add_dependency("fog-xml")
-  s.add_dependency("opennebula", "~> 4.12.0")
 
   s.add_development_dependency("minitest")
   s.add_development_dependency("minitest-stub-const")
