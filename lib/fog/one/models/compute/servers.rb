@@ -1,7 +1,6 @@
 require 'fog/core/collection'
 require 'fog/one/models/compute/server'
 
-
 module Fog
   module Compute
     class One
@@ -11,7 +10,9 @@ module Fog
         model Fog::Compute::One::Server
 
         def all(filter={})
-          load(service.list_vms(filter))
+          a=load(service.list_vms(filter))
+          Rails.logger.debug a
+          a
         end
 
         def get(id)

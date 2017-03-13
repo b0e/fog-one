@@ -7,6 +7,7 @@ module Fog
         def list_vms(filter={})
           vms=[]
           vmpool = ::OpenNebula::VirtualMachinePool.new(client)
+          Rails.logger.info vmpool.inspect
           if filter[:id].nil?
             vmpool.info!(-2,-1,-1,-1)
           elsif filter[:id]
@@ -15,6 +16,7 @@ module Fog
           end # filter[:id].nil?
 
           vmpool.each do |vm|
+            Rails.logger.info vm.to_hash
             one = vm.to_hash
             data = {}
             data["onevm_object"] = vm

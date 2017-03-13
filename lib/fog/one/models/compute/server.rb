@@ -19,6 +19,8 @@ module Fog
         attribute :group
         attribute :onevm_object
         attribute :flavor
+        attribute :template_id
+        attribute :vminterfaces
 
         def save
           merge_attributes(service.vm_allocate(attributes))
@@ -28,9 +30,13 @@ module Fog
           ip
         end
 
-        #def template_id
-        #  ""
-        #end
+        def template_id
+          ''
+        end
+        
+        def vminterfaces
+          interfaces
+        end
 
         def private_ip_address
           ip
