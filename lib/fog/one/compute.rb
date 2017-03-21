@@ -1,4 +1,5 @@
-require 'fog/one/core'
+#require 'fog/one/core'
+require 'fog/core'
 
 module Fog
  module Compute
