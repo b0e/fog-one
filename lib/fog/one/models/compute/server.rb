@@ -19,8 +19,12 @@ module Fog
         attribute :group
         attribute :onevm_object
         attribute :flavor
+
+        # dummy attributes used by foreman_one
+        # should be integrated in foreman_one
         attribute :template_id
         attribute :vminterfaces
+        attribute :location
 
 
         def vminterfaces
@@ -40,6 +44,10 @@ module Fog
         def vminterfaces_attributes=(attributes)
           true                   
         end
+
+        def location          
+          ""
+        end                      
 
         def template_id          
           ""
