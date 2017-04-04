@@ -11,7 +11,6 @@ module Fog
 
         def all(filter={})
           a=load(service.list_vms(filter))
-          Rails.logger.debug a
           a
         end
 

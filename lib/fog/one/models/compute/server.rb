@@ -24,16 +24,11 @@ module Fog
 
 
         def vminterfaces
-          Rails.logger.debug interfaces.inspect
           interfaces
         end   
 
         def select_nic(fog_nics, nic)   
-          Rails.logger.debug "Fog nics #{fog_nics.inspect}"
-          Rails.logger.debug "nic #{nic.inspect}"
           fog_nics.detect {|fn| 
-            Rails.logger.debug "compute attributes #{nic.compute_attributes.inspect}"
-            Rails.logger.debug "#{fn.vnet} vs #{nic.compute_attributes['network']}"
             fn.vnet == nic.compute_attributes['network']
           } # grab any nic on the same network
         rescue Exception => e
@@ -43,7 +38,6 @@ module Fog
         end
 
         def vminterfaces_attributes=(attributes)
-          Rails.logger.debug "AAAAAAATTTTRIBUTES #{attributes.inspect}"
           true                   
         end
 

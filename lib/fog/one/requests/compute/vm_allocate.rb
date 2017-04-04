@@ -74,7 +74,6 @@ module Fog
             end
           end
 
-          Rails.logger.info "AAAAAAL: #{data.inspect}"
 
           data
         rescue => err
