@@ -67,8 +67,9 @@ VNC_STATES = [
         #32  #BOOT_UNDEPLOY
 ]
 
-VAR_LOCATION = Dir.pwd + "/extras/noVNC" 
-SHARE_LOCATION = Dir.pwd + "/extras/noVNC"
+
+VAR_LOCATION = "/usr/share/foreman/extras/noVNC" 
+SHARE_LOCATION = "/usr/share/foreman/extras/noVNC"
 class OpenNebulaVNC
 
     attr_reader :proxy_port
@@ -178,12 +179,12 @@ class OpenNebulaVNC
 
         # Create token file
         
-	begin
+        begin
             f = File.open(File.join(@token_folder, token_file), 'w')
             f.write(token)
             f.close
         rescue Exception => e
-#            @logger.error e.message
+            @logger.error e.message
             return error(500, "Cannot create VNC proxy token")
         end
 
