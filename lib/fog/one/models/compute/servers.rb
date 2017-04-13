@@ -21,12 +21,8 @@ module Fog
           # raise exception if we found more than one vm
           raise ArgumentError, "OpenNebula returned #{data.length} elements. Should be 0 or 1" if data.length > 1
 
-          # return the server object if we found one vm
-          new data.first data.length == 1
-
-          # return data (empty array) if we found no vm
-          data
-
+          # return the server object if we found one vm else nil
+          new data.first if data.length == 1
         end
 
         def shutdown(id)
