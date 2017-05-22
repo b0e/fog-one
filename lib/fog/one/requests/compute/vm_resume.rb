@@ -10,7 +10,7 @@ module Fog
           puts "#{vmpool.entries.class} #{vmpool.entries.methods}"
           puts "#{vmpool.entries.inspect} #{vmpool.entries.methods}"
 
-          raise ArgumentError, "Could not resume server with #{id}. Found #{vmpool.count} server with id: #{id}" if vmpool.count != 1
+          raise ArgumentError, "Could not resume server with id: #{id}. Found #{vmpool.count} server with id: #{id}" if vmpool.count != 1
           vmpool.first.resume
         end
 

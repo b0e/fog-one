@@ -78,10 +78,16 @@ module Fog
         end
 
         def start
-          if status == 4
+          Rails.logger.warn "STATUS================= #{status} #{status.class}"
+
+          # Resume VM only if the state is ok
+          # https://docs.opennebula.org/5.2/operation/references/vm_states.html
+          case status
+          when 4,5,8,9 # stopped, suspended, poweroff,undeployed
             service.vm_resume(id)
+          else
+            raise ArgumentError, "Could not start/resume VM with status #{status}." 
           end
-          true
         end	
 
         def stop(hard=false)
