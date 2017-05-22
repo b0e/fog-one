@@ -78,8 +78,6 @@ module Fog
         end
 
         def start
-          Rails.logger.warn "STATUS================= #{status} #{status.class}"
-
           # Resume VM only if the state is ok
           # https://docs.opennebula.org/5.2/operation/references/vm_states.html
           case status
