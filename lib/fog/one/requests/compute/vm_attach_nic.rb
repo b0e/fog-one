@@ -5,6 +5,7 @@ module Fog
         def vm_attach_nic(id, nic)
           vmpool = ::OpenNebula::VirtualMachinePool.new(client)
           vmpool.info!(-2,id,id,-1)
+          raise ArgumentError, "Could not attach nic to server with #{id}. Found #{vmpool.count} server with id: #{id}" if vmpool.count != 1
           vm = vmpool.first
           vm.nic_attach(nic.to_s)
         rescue OpenNebulaError=> err

@@ -7,15 +7,15 @@ module Fog
           vmpool = ::OpenNebula::VirtualMachinePool.new(client)
           vmpool.info!(-2,id,id,-1)
 
-          rc = 0
-          vmpool.each do |vm|
-            rc = vm.disk_snapshot(disk_id, image_name)
-            if(rc.is_a? ::OpenNebula::Error)
-               raise(rc)
-            end
+          raise ArgumentError, "Could not snapshot disk to server with #{id}. Found #{vmpool.count} server with id: #{id}" if vmpool.count != 1
+
+          rc = vmpool.first.disk_snapshot(disk_id, image_name)
+          if(rc.is_a? ::OpenNebula::Error)
+            raise(rc)
           end
+
           rc
-        end #def vm_disk_snapshot
+        end
       end
     end
   end

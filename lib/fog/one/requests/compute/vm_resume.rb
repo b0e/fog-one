@@ -6,27 +6,12 @@ module Fog
         def vm_resume(id)
 
           vmpool = ::OpenNebula::VirtualMachinePool.new(client)
-	  vmpool.info!(-2,id,id,-1)
-	  puts "#{vmpool.entries.class} #{vmpool.entries.methods}"
-	  puts "#{vmpool.entries.inspect} #{vmpool.entries.methods}"
-          
-	  vmpool.each do |vm|
-	    vm.resume
-          end
-          ##if(attr[:id].nil?) 
-	  ##  raise(ArgumentError.new("Attribute :id is nil or empty! #{attr.inspect}"))
-	  ##end
+          vmpool.info!(-2,id,id,-1)
+          puts "#{vmpool.entries.class} #{vmpool.entries.methods}"
+          puts "#{vmpool.entries.inspect} #{vmpool.entries.methods}"
 
-          #vmpool = ::OpenNebula::VirtualMachinePool.new(client)
-	  #vmpool.info!
-
-	  #vmpool.each do |vm|
-	  #        if vm.id == id then
-	  #      	  vm.resume
-	  #      	  return true
-	  #        end
-	  #end
-	  #false
+          raise ArgumentError, "Could not resume server with #{id}. Found #{vmpool.count} server with id: #{id}" if vmpool.count != 1
+          vmpool.first.resume
         end
 
         class Mock

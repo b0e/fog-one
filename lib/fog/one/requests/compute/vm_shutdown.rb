@@ -7,10 +7,10 @@ module Fog
           vmpool = ::OpenNebula::VirtualMachinePool.new(client)
           vmpool.info!(-2,id,id,-1)
 
-          vmpool.each do |vm|
-            vm.shutdown()
-          end
-        end #def vm_shutdown
+          raise ArgumentError, "Could not shutdown server with #{id}. Found #{vmpool.count} server with id: #{id}" if vmpool.count != 1
+
+          vmpool.first.shutdown
+        end
 
       end
     end
