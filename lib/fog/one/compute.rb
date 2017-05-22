@@ -28,6 +28,7 @@ module Fog
       request :get_vnc_console
       request :vm_resume
       request :vm_stop
+      request :vm_poweroff
       request :template_pool
       request :vm_disk_snapshot
       request :vm_shutdown

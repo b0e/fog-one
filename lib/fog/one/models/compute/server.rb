@@ -57,11 +57,6 @@ module Fog
           _("%{cpus} CPUs and %{memory} memory") % {:cpus => cpu, :memory => number_to_human_size(memory.to_i)}
         end
 
-
-
-
-
-
         def save
           merge_attributes(service.vm_allocate(attributes))
         end
@@ -89,9 +84,9 @@ module Fog
           true
         end	
 
-        def stop
-          Fog::Logger.warning("stop VM: ID:#{id}")
-          service.vm_stop(id)
+        def stop(hard=false)
+          Fog::Logger.warning("stop VM: ID:#{id} HARD: #{hard}")
+          service.vm_poweroff(id, hard)
         end
 
         def destroy
