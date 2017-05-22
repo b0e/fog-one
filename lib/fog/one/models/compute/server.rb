@@ -88,8 +88,7 @@ module Fog
           end
         end	
 
-        def stop(hard=false)
-          Fog::Logger.warning("stop VM: ID:#{id} HARD: #{hard}")
+        def stop(hard=true)
           service.vm_poweroff(id, hard)
         end
 
